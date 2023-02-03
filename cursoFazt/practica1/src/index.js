@@ -1,33 +1,31 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 
 import ReactDOM from "react-dom/client";
 
-import {Objects} from './operaciones'
+/* import { Objects, UserCard } from "./operaciones";
 
+import Casado, { Casamiento } from "./married";
+
+import { Greeting } from "./Greeting"; 
+
+
+*/
+/* import { Counter } from "./Counter"; */
+import { Taskcard } from "./task";
+import { Saludar } from "./Saludo.jsx";
+import { Mensajes } from "./Msj";
+import { Counter } from "./Counter";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-function Casado() {
-    const married = false;
-
-    /* if (married) {
-          return <h1>Hola estoy casado</h1>
-      }else{
-          return <h1>No estoy casado JAJJAJAJA</h1>
-      } */
-    // ** Es mejor utilizar un operador terneario
-
-    
-    return <h1>{married ? "estoy casado" : "no estoy casado 🤩"}</h1>;
-} 
 
 
 
-function Operaciones(){
-    function suma(a,b){
-        return a+b
-    }
-
-    return(<h1>La operacion da: {suma(5,4)}</h1>)
-}
-
-root.render( <> <Objects/> </>);
+root.render(
+    <>
+        <Taskcard ready={true} />
+       
+        <Counter/>
+       
+        
+    </>
+);
