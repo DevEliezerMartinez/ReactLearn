@@ -10,7 +10,7 @@ function Taskcard({ task }) {
   }
 
   return (
-    <div className="tarea p-3 rounded-lg border border-4 border-l-blue-600 bg-green-400 text-center font-serif" key={task.id}>
+    <div className="tarea p-3 rounded-lg  border-4 border-l-blue-600 bg-green-400 text-center font-serif" key={task.id}>
       <h3 className=" uppercase font-bold text-stone-50">{task.title}</h3>
       <span>{task.description}</span>
       <button onClick={() => deleteTask(task.id)}> Eliminar</button>
