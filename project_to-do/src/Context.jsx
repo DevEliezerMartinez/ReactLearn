@@ -3,22 +3,53 @@ import { createContext, useState, useEffect } from "react";
 export let Contexto = createContext();
 
 export function ContextoProvider(props) {
-  const [task, setTask] = useState("");
+  let tareaAux = [{ id: 0, title: "tarea1", description: "nombreNuevo" }];
+
+  const [tareasG, setTareasG] = useState(tareaAux);
+  const [indiceTarea, setIndiceTarea] = useState();
+
   useEffect(() => {
-    setTask("");
+    setTareasG(tareaAux);
   }, []);
 
-  function mia(x) {
-    console.log(x);
-    setTask(x);
-  }
+  let crear = (tituloNuevo, nombreNuevo) => {
+    setTareasG([
+      ...tareasG,
+      {
+        id: tareasG.length,
+        title: tituloNuevo,
+        description: nombreNuevo,
+      },
+    ]);
+  };
 
-  let crear=()=>{console.log("crear")}
-  let leer=()=>{console.log("leer")}
+  let borrar = (index) => {
+    setTareasG(tareasG.filter((ele) => ele.id !== index));
+    setIndiceTarea(undefined);
+  };
 
-  let borrar=()=>{console.log("borrar")}
+  let editor = (id) => {
+    setIndiceTarea(id);
+  };
+
+  let modificar = (id, tituloNuevo, descriptionNueva) => {
+    const newState = tareasG.map((obj) => {
+      if (obj.id == id) {
+        tareasG[id].title = tituloNuevo;
+        return { ...obj, title: tituloNuevo,description: descriptionNueva };
+      }
+      return obj;
+    });
+    setTareasG(newState)
+  };
+
+ 
 
   return (
-    <Contexto.Provider value={{ crear,leer,borrar }}>{props.children}</Contexto.Provider>
+    <Contexto.Provider
+      value={{ tareasG, indiceTarea, modificar, editor, crear, borrar }}
+    >
+      {props.children}
+    </Contexto.Provider>
   );
 }

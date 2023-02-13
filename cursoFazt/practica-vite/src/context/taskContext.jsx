@@ -17,8 +17,10 @@ export function TaskContextProvider(props) {
 
 
   function deleteTask(taskId){
+    /* console.log(task)
+    console.log(taskId) */
+    console.log("----")
     console.log(task)
-    console.log(taskId)
 
     setTask(task.filter(ele=> ele.id!== taskId))
   }
